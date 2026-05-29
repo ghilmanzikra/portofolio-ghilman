@@ -4,111 +4,47 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Ghilman Zikra | Portfolio",
   description: "Web Portofolio Pribadi Ghilman Zikra",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
-    >
-      <body className="min-h-full flex flex-col bg-[#07070f] text-gray-100 overflow-x-hidden">
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}>
+      <body className="min-h-full flex flex-col bg-[#0A0E17] text-gray-100 overflow-x-hidden">
 
-        {/* =============================================
-            AURORA BACKGROUND SYSTEM (fixed, layered)
-            ============================================= */}
+        {/* ===== AURORA BACKGROUND — teal + ocean blue ===== */}
         <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
+          <div className="absolute inset-0 bg-[#0A0E17]" />
 
-          {/* Deep base */}
-          <div className="absolute inset-0 bg-[#07070f]" />
+          {/* Film grain */}
+          <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`, backgroundSize: '128px 128px' }} />
 
-          {/* Noise texture overlay for depth */}
-          <div
-            className="absolute inset-0 opacity-[0.03]"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-              backgroundSize: '128px 128px',
-            }}
-          />
+          {/* Orb 1 — top-left MINT */}
+          <div className="absolute top-[-8%] left-[-8%] w-[650px] h-[650px] rounded-full animate-aurora" style={{ background: 'radial-gradient(circle, rgba(45,212,191,0.28) 0%, rgba(20,184,166,0.12) 50%, transparent 70%)', filter: 'blur(70px)' }} />
 
-          {/* Aurora orb — top left violet */}
-          <div
-            className="absolute top-[-10%] left-[-5%] w-[600px] h-[600px] rounded-full animate-aurora"
-            style={{
-              background: 'radial-gradient(circle, rgba(109,40,217,0.35) 0%, rgba(91,33,182,0.15) 50%, transparent 70%)',
-              filter: 'blur(60px)',
-            }}
-          />
+          {/* Orb 2 — top-right BLUE */}
+          <div className="absolute top-[2%] right-[-12%] w-[560px] h-[560px] rounded-full animate-aurora" style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.28) 0%, rgba(37,99,235,0.10) 50%, transparent 70%)', filter: 'blur(75px)', animationDelay: '2.5s' }} />
 
-          {/* Aurora orb — top right blue */}
-          <div
-            className="absolute top-[5%] right-[-10%] w-[500px] h-[500px] rounded-full animate-aurora"
-            style={{
-              background: 'radial-gradient(circle, rgba(37,99,235,0.3) 0%, rgba(29,78,216,0.12) 50%, transparent 70%)',
-              filter: 'blur(70px)',
-              animationDelay: '2s',
-            }}
-          />
+          {/* Orb 3 — mid TEAL */}
+          <div className="absolute top-[42%] left-[25%] w-[420px] h-[420px] rounded-full animate-aurora" style={{ background: 'radial-gradient(circle, rgba(45,212,191,0.14) 0%, transparent 70%)', filter: 'blur(90px)', animationDelay: '4s' }} />
 
-          {/* Aurora orb — mid-page pink/rose accent */}
-          <div
-            className="absolute top-[40%] left-[30%] w-[400px] h-[400px] rounded-full animate-aurora"
-            style={{
-              background: 'radial-gradient(circle, rgba(168,85,247,0.2) 0%, transparent 70%)',
-              filter: 'blur(80px)',
-              animationDelay: '4s',
-            }}
-          />
+          {/* Orb 4 — bottom-right BLUE */}
+          <div className="absolute bottom-[8%] right-[3%] w-[480px] h-[480px] rounded-full animate-aurora" style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 70%)', filter: 'blur(80px)', animationDelay: '6s' }} />
 
-          {/* Aurora orb — bottom right teal */}
-          <div
-            className="absolute bottom-[10%] right-[5%] w-[450px] h-[450px] rounded-full animate-aurora"
-            style={{
-              background: 'radial-gradient(circle, rgba(20,184,166,0.15) 0%, transparent 70%)',
-              filter: 'blur(90px)',
-              animationDelay: '6s',
-            }}
-          />
+          {/* Orb 5 — bottom-left MINT accent */}
+          <div className="absolute bottom-[20%] left-[5%] w-[300px] h-[300px] rounded-full animate-aurora" style={{ background: 'radial-gradient(circle, rgba(45,212,191,0.10) 0%, transparent 70%)', filter: 'blur(60px)', animationDelay: '3s' }} />
 
-          {/* Subtle grid overlay */}
-          <div
-            className="absolute inset-0 opacity-[0.04]"
-            style={{
-              backgroundImage: `
-                linear-gradient(rgba(139,92,246,0.5) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(139,92,246,0.5) 1px, transparent 1px)
-              `,
-              backgroundSize: '60px 60px',
-            }}
-          />
+          {/* Grid overlay */}
+          <div className="absolute inset-0 opacity-[0.035]" style={{ backgroundImage: `linear-gradient(rgba(45,212,191,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(45,212,191,0.4) 1px, transparent 1px)`, backgroundSize: '64px 64px' }} />
         </div>
 
-        {/* =============================================
-            LAYOUT STRUCTURE
-            ============================================= */}
         <Navbar />
-
-        <main className="flex-grow pt-20">
-          {children}
-        </main>
-
+        <main className="flex-grow pt-20">{children}</main>
         <Footer />
       </body>
     </html>
