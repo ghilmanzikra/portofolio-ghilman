@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from 'react';
+import { projectsData } from '../data/projects'; // <-- Menghubungkan ke gudang data baru kita!
 
 /* =============================================
    INTERSECTION OBSERVER HOOK
@@ -61,47 +62,8 @@ export default function Home() {
     return () => clearTimeout(t);
   }, []);
 
-  const categories = ['Semua', 'Web Dev', 'Desain Grafis', 'Animasi'];
-
-  const projectsData = [
-    {
-      id: 1, title: "Al-Quran Digital", category: "Web Dev",
-      shortDesc: "Web Interaktif Al-Quran",
-      fullDesc: "Tugas pemrograman web menggunakan Bootstrap. Dilengkapi dengan fitur pencarian surat dan desain yang responsif di HP maupun Laptop.",
-      image: "/web-quran.png", span: "md:col-span-2",
-      accent: "from-[#2DD4BF]/20 to-[#3B82F6]/10",
-      badge: "bg-[#2DD4BF]/15 text-[#2DD4BF] border-[#2DD4BF]/30",
-      color: "bg-[#2DD4BF]/5",
-    },
-    {
-      id: 2, title: "Desain Karakter", category: "Desain Grafis",
-      shortDesc: "Logo Vektor Karakter",
-      fullDesc: "Eksplorasi desain identitas visual berbentuk karakter manusia, dibuat dengan presisi vektor yang tajam.",
-      image: "/logo-orang.png", span: "md:col-span-1",
-      accent: "from-orange-600/20 to-pink-500/10",
-      badge: "bg-orange-500/20 text-orange-300 border-orange-500/30",
-      color: "bg-orange-900/10",
-    },
-    {
-      id: 3, title: "Feeds HMTI", category: "Desain Grafis",
-      shortDesc: "Manajemen Konten Instagram",
-      fullDesc: "Kumpulan desain visual berukuran 1080x1350 untuk keperluan informasi dan publikasi Himpunan Mahasiswa Teknik Informatika UIN Suska Riau.",
-      image: "/feeds-hmti.jpg", span: "md:col-span-1 md:row-span-2",
-      accent: "from-pink-600/20 to-rose-500/10",
-      badge: "bg-pink-500/20 text-pink-300 border-pink-500/30",
-      color: "bg-pink-900/10",
-    },
-    {
-      id: 4, title: "Proyek Animasi", category: "Animasi",
-      shortDesc: "Sedang diproduksi... 🖱️✨",
-      fullDesc: "Proyek animasi masa depan yang akan segera digarap. Bersiaplah untuk visualisasi yang bergerak mulus!",
-      image: "", span: "md:col-span-2",
-      accent: "from-[#3B82F6]/25 to-[#2DD4BF]/15",
-      badge: "bg-[#3B82F6]/20 text-[#93C5FD] border-[#3B82F6]/30",
-      color: "bg-[#3B82F6]/10",
-      isWip: true,
-    },
-  ];
+  // Daftar Kategori Filter Baru yang kamu minta persis!
+  const categories = ['Semua', 'Logo', 'Flyer Digital', 'Spanduk', 'Sertifikat', 'Twibbon'];
 
   const certificatesData = [
     { id: 1, title: "Ketua Kurmatif 2025",    issuer: "HMTI UIN Suska",  image: "/cert-kurmatif.jpg" },
@@ -211,11 +173,7 @@ export default function Home() {
                 {/* Frame */}
                 <div className="relative w-56 h-56 md:w-64 md:h-64 rounded-full p-[3px] bg-gradient-to-br from-[#2DD4BF] to-[#3B82F6] transform transition-all duration-500 group-hover:-translate-y-3 group-hover:scale-105 shadow-[0_0_40px_rgba(45,212,191,0.25)] group-hover:shadow-[0_0_60px_rgba(45,212,191,0.5)]">
                   <div className="w-full h-full rounded-full bg-[#0C111A] border border-white/10 overflow-hidden flex items-center justify-center">
-                    {/* <img src="/foto-profilku.jpg" alt="Ghilman Zikra" className="w-full h-full object-cover" /> */}
-                    <div className="text-center">
-                      <div className="text-4xl mb-2">📸</div>
-                      <span className="text-gray-500 font-medium text-sm">Foto Profil</span>
-                    </div>
+                    <img src="/foto-profil.png" alt="Ghilman Zikra" className="w-full h-full object-cover" />
                   </div>
                 </div>
               </div>
@@ -306,9 +264,9 @@ export default function Home() {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="absolute inset-0 w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A0E17]/90 via-[#0A0E17]/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A0E17]/90 via-[#0A0E17]/20 to-transparent pointer-events-none" />
                 </>
               )}
 
