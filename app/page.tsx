@@ -52,6 +52,9 @@ export default function Home() {
   const [showCertificates, setShowCertificates] = useState(false);
   const [heroVisible, setHeroVisible]       = useState(false);
 
+  // 👇 TAMBAHKAN STATE INI UNTUK MENGONTROL KANTONG GALERI 👇
+  const [isExpanded, setIsExpanded]         = useState(false);
+
   const aboutSection    = useInView();
   const projectsSection = useInView();
   const certSection     = useInView();
@@ -104,14 +107,6 @@ export default function Home() {
             <span className="text-white">Menjadi </span>
             <span className="text-gray-400">Nyata.</span>
           </h1>
-        </div>
-
-        {/* Subtext */}
-        <div className={`transition-all duration-700 delay-300 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mb-10 leading-relaxed">
-            Halo! Saya <span className="font-bold text-white">Ghilman Zikra</span>.{' '}
-            Seorang mahasiswa Teknik Informatika, desainer sosial media, dan calon kreator animasi. Saya suka mengubah ide menjadi karya yang interaktif.
-          </p>
         </div>
 
         {/* CTA */}
@@ -222,7 +217,7 @@ export default function Home() {
 
 
       {/* =============================================
-          SECTION 3 : GALERI KARYA
+          SECTION 3 : GALERI KARYA (K KANTONG EKSPANSI INTERAKTIF)
           ============================================= */}
       <section id="projects" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24" ref={projectsSection.ref}>
 
@@ -230,7 +225,7 @@ export default function Home() {
         <div className={`text-center mb-12 transition-all duration-700 ${projectsSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <span className="text-[#2DD4BF] font-semibold text-sm tracking-widest uppercase">Portofolio</span>
           <h2 className="text-4xl md:text-5xl font-black text-white mt-2 mb-3">Galeri Karya 🎨</h2>
-          <p className="text-gray-400 text-lg">Eksplorasi desain, kode, dan visual.</p>
+          <p className="text-gray-400 text-lg">Eksplorasi desain, kode, dan visual terbaik.</p>
         </div>
 
         {/* Filter tabs */}
@@ -238,7 +233,10 @@ export default function Home() {
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => setActiveFilter(cat)}
+              onClick={() => {
+                setActiveFilter(cat);
+                setIsExpanded(false); // Otomatis tutup laci saat ganti kategori agar rapi kembali
+              }}
               className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
                 activeFilter === cat
                   ? 'bg-gradient-to-r from-[#2DD4BF] to-[#3B82F6] text-[#0A0E17] font-black shadow-[0_0_20px_rgba(45,212,191,0.35)]'
@@ -250,50 +248,86 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Grid */}
-        <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px] transition-all duration-700 delay-300 ${projectsSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-          {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              onClick={() => setSelectedProject(project)}
-              className={`${project.span} rounded-3xl p-6 border border-white/[0.07] backdrop-blur-xl hover:shadow-2xl hover:shadow-[#2DD4BF]/10 hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group cursor-pointer animate-fade-in-up ${project.color}`}
-            >
-              {/* Project image */}
-              {project.image && (
-                <>
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="absolute inset-0 w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A0E17]/90 via-[#0A0E17]/20 to-transparent pointer-events-none" />
-                </>
-              )}
+        {/* === STRATEGI KANTONG WADAH BENTO === */}
+        <div className="relative">
+          
+          {/* Pembungkus dengan pembatasan tinggi dinamis. 
+              Jika ditutup, tingginya dikunci di 530px (pas setinggi 2 baris bento grid laptop) */}
+          <div className={`transition-all duration-1000 ease-in-out overflow-hidden relative ${
+            isExpanded ? "max-h-[4000px]" : "max-h-[530px]"
+          }`}>
+            
+            {/* Grid Album Utama */}
+            <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px] transition-all duration-700 delay-300 ${projectsSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+              {filteredProjects.map((project) => (
+                <div
+                  key={project.id}
+                  // Sesuai idemu, kita tidak lagi memicu modal pop-up full screen saat di-klik!
+                  className={`${project.span} rounded-3xl p-6 border border-white/[0.07] backdrop-blur-xl hover:shadow-2xl hover:shadow-[#2DD4BF]/10 hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group ${project.color}`}
+                >
+                  {/* Project image */}
+                  {project.image && (
+                    <>
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="absolute inset-0 w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A0E17]/90 via-[#0A0E17]/10 to-transparent pointer-events-none" />
+                    </>
+                  )}
 
-              {/* WIP indicator */}
-              {project.isWip && (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="relative">
-                    <div className="w-20 h-20 rounded-full bg-[#2DD4BF]/10 border border-[#2DD4BF]/20 flex items-center justify-center animate-pulse">
-                      <span className="text-3xl">🎬</span>
+                  {/* WIP indicator */}
+                  {project.isWip && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="relative">
+                        <div className="w-20 h-20 rounded-full bg-[#2DD4BF]/10 border border-[#2DD4BF]/20 flex items-center justify-center animate-pulse">
+                          <span className="text-3xl">🎬</span>
+                        </div>
+                        <div className="absolute -inset-2 rounded-full border border-[#2DD4BF]/10 animate-ping" />
+                      </div>
                     </div>
-                    <div className="absolute -inset-2 rounded-full border border-[#2DD4BF]/10 animate-ping" />
+                  )}
+
+                  {/* Badge */}
+                  <div className={`absolute top-4 right-4 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold uppercase border ${project.badge}`}>
+                    {project.category}
+                  </div>
+
+                  {/* Title & Info */}
+                  <div className="relative z-10 flex flex-col h-full justify-end pointer-events-none">
+                    <h3 className="text-2xl font-bold text-white mb-1">{project.title}</h3>
+                    <p className="text-gray-400 text-sm font-medium">{project.shortDesc}</p>
                   </div>
                 </div>
-              )}
-
-              {/* Badge */}
-              <div className={`absolute top-4 right-4 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold uppercase border ${project.badge}`}>
-                {project.isWip ? 'Coming Soon' : 'Klik Review'}
-              </div>
-
-              {/* Title */}
-              <div className="relative z-10 flex flex-col h-full justify-end">
-                <h3 className="text-2xl font-bold text-white mb-1">{project.title}</h3>
-                <p className="text-gray-300 font-medium">{project.shortDesc}</p>
-              </div>
+              ))}
             </div>
-          ))}
+
+            {/* === EFEK TIRAI INTIPAN (FADE-OUT OVERLAY) === */}
+            {/* Tirai gradasi hitam ini hanya muncul ketika laci kantong sedang tertutup */}
+            <div className={`absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0A0E17] via-[#0A0E17]/70 to-transparent pointer-events-none transition-opacity duration-500 z-10 ${
+              isExpanded ? "opacity-0" : "opacity-100"
+            }`} />
+
+          </div>
+
+          {/* === TOMBOL CTA UTAMA PENGEKSPANSI === */}
+          <div className="flex justify-center mt-10 relative z-20">
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="group relative px-8 py-4 rounded-xl font-black text-[#0A0E17] overflow-hidden shadow-[0_0_30px_rgba(45,212,191,0.2)] hover:shadow-[0_0_50px_rgba(45,212,191,0.45)] transition-all duration-300 hover:-translate-y-1 active:scale-95"
+            >
+              <span className="absolute inset-0 bg-gradient-to-r from-[#2DD4BF] to-[#3B82F6] group-hover:from-[#5EEAD4] group-hover:to-[#60A5FA] transition-all duration-300" />
+              <span className="relative flex items-center gap-2 font-black tracking-wide">
+                {isExpanded ? "Sembunyikan Koleksi Karya" : "Lihat Semua Isi Galeri"}
+                {/* Icon tanda panah berputar naik-turun sesuai status ekspansi */}
+                <svg className={`w-4 h-4 transition-transform duration-500 ${isExpanded ? "rotate-180" : "group-hover:translate-y-1"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </button>
+          </div>
+
         </div>
       </section>
 

@@ -15,7 +15,7 @@ export const projectsData: ProjectItem[] = [
   // === CONTOH LOGO (Rasio 1:1 - Kotak Persegi Standar) ===
   {
     id: 1,
-    title: "Desain Karakter Vektor",
+    title: "Logo Pertama",
     category: "Logo",
     shortDesc: "Rasio 1:1 • Logo Identitas",
     fullDesc: "Eksplorasi desain identitas visual berbentuk karakter manusia dengan presisi vektor yang tajam.",

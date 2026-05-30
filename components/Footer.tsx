@@ -26,7 +26,7 @@ export default function Footer() {
           <p className="text-gray-600 text-sm font-medium order-last md:order-none">
             © {currentYear}{' '}
             <span className="text-gray-400 font-semibold">Ghilman Zikra</span>
-            {' '}— Made In Indonesia 🇮🇩
+            {' '}— Pekanbaru, Riau, Indonesia.
           </p>
 
           {/* Back to top */}

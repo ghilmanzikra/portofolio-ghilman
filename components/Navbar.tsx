@@ -47,11 +47,6 @@ export default function Navbar() {
               alt="GZ Logo"
               className="h-9 w-auto object-contain transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_rgba(45,212,191,0.7)] active:scale-95"
             />
-            <span className="text-xl font-extrabold tracking-tight">
-              <span className="text-white">Ghilman</span>
-              <span className="gradient-text-subtle">Zikra</span>
-              <span className="text-[#2DD4BF]">.</span>
-            </span>
           </a>
 
           {/* ── Desktop nav ── */}
