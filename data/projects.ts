@@ -9,6 +9,8 @@ export interface ProjectItem {
   image: string;
   span: string;  // Untuk mengatur ukuran kotak di Bento Grid (lebar/tinggi)
   color: string; // Background cadangan sebelum gambar dimuat
+  isWip?: boolean; // <-- Tambahan: Deteksi proyek belum selesai
+  badge?: string;  // <-- Tambahan: Teks untuk label di pojok kanan atas
 }
 
 export const projectsData: ProjectItem[] = [
