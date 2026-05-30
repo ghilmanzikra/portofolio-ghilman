@@ -59,6 +59,8 @@ export default function Home() {
   const projectsSection = useInView();
   const certSection     = useInView();
   const contactSection  = useInView();
+  const skillsSection = useInView();
+  const expSection = useInView();
 
   useEffect(() => {
     const t = setTimeout(() => setHeroVisible(true), 100);
@@ -74,6 +76,37 @@ export default function Home() {
     { id: 3, title: "Sertifikat Organisasi",   issuer: "HIMATIF",         image: "/cert-org.jpg"      },
   ];
 
+  // Data Pengalaman Riil (Versi Desainer Asli! 🎨)
+  const experiences = [
+    {
+      id: 1,
+      role: "Kepala Departemen Infokom",
+      company: "HIMATIF UIN Suska Riau",
+      date: "2026 - Sekarang",
+      desc: "Memimpin manajemen sosial media, publikasi, dan digital branding himpunan. Bertanggung jawab mengoordinasi dokumentasi menggunakan perlengkapan standar industri seperti Canon 600D."
+    },
+    {
+      id: 2,
+      role: "Creative & UI/UX Designer",
+      company: "Proyek Kolaborasi Kampus",
+      date: "2025 - 2026",
+      desc: "Merancang antarmuka pengguna (UI) yang interaktif dan estetis menggunakan Figma, serta memastikan pengalaman pengguna (UX) yang mulus untuk berbagai keperluan proyek web."
+    },
+    {
+      id: 3,
+      role: "Multimedia Content Creator",
+      company: "Berbagai Kepanitiaan",
+      date: "2024 - Sekarang",
+      desc: "Memproduksi konten grafis dan dokumentasi visual (Canva, CapCut, Illustrator) untuk kampanye acara, termasuk desain spanduk, flyer digital, dan perancangan identitas visual (logo)."
+    }
+  ];
+
+  // Senjata Andalan (Tanpa Backend!)
+  const skills = [
+    { category: "Multimedia & Design 🎨", items: ["Figma", "Adobe Illustrator", "Adobe Photoshop", "Canva", "CapCut", "DSLR Photography"] },
+    { category: "Frontend & UI/UX 💻", items: ["UI/UX Design", "Design Systems", "Layout Grids", "HTML & CSS", "Tailwind CSS"] }
+  ];
+
   const filteredProjects = projectsData.filter(p =>
     activeFilter === 'Semua' ? true : p.category === activeFilter
   );
@@ -82,142 +115,108 @@ export default function Home() {
     <div className="flex flex-col gap-32 pb-24">
 
       {/* =============================================
-          SECTION 1 : HERO
+          1. HERO SECTION (ULTIMATE VISUAL SPLIT LAYOUT - ROUNDED BACKDROP & COSMIC BORDER)
           ============================================= */}
-      <section id="home" className="min-h-[90vh] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center relative">
-
-        {/* Floating orbs */}
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-[#2DD4BF]/8 rounded-full blur-[80px] animate-float pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-[#3B82F6]/8 rounded-full blur-[80px] animate-float pointer-events-none" style={{ animationDelay: '3s' }} />
-
-        {/* Badge */}
-        <div className={`transition-all duration-700 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-          <div className="inline-flex items-center px-4 py-2 rounded-full glass-card text-[#2DD4BF] font-medium text-sm mb-8 border border-[#2DD4BF]/20">
-            <span className="flex w-2 h-2 rounded-full bg-[#2DD4BF] mr-2 animate-pulse shadow-[0_0_8px_rgba(45,212,191,0.8)]" />
-            Multimedia Designer
+      <section id="home" className="relative min-h-[92vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+        
+        {/* 🚀 UPGRADE: MASKING DECK FOR DYNAMIC GRADIENT BORDER 🚀 */}
+        {/* PANEL LUAR: Pemegang Warna Gradasi Penuh Teal ke Blue */}
+        <div className="absolute top-0 inset-x-0 h-full rounded-b-[4rem] md:rounded-b-[6rem] shadow-[0_25px_70px_rgba(0,0,0,0.5)] -z-10 overflow-hidden bg-gradient-to-r from-[#2DD4BF] via-[#3B82F6] to-[#2DD4BF] opacity-60 p-[5px] flex">
+          
+          {/* PANEL DALAM (The Real Panel): Masks the center, leaving a fine dynamic border.
+              Padding 1.5px di atas menciptakan 'mask' sempurna */}
+          <div className="relative w-full h-full bg-gradient-to-b from-[#0A0E17]/90 via-[#0D1527]/70 to-[#0A0E17]/20 backdrop-blur-3xl rounded-[inherit] overflow-hidden flex">
+            {/* Bola cahaya aurora internal di dalam panel */}
+            <div className="absolute top-[-20%] left-[-10%] w-[40rem] h-[40rem] bg-[#2DD4BF]/5 rounded-full blur-[130px] animate-float pointer-events-none" />
+            <div className="absolute bottom-[-20%] right-[-10%] w-[40rem] h-[40rem] bg-[#3B82F6]/5 rounded-full blur-[130px] animate-float pointer-events-none" style={{ animationDelay: '4s' }} />
           </div>
+
         </div>
 
-        {/* Headline */}
-        <div className={`transition-all duration-700 delay-150 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-6 leading-[1.05]">
-            <span className="text-white">Membangun </span>
-            <span className="gradient-text animate-text-glow">Kreativitas</span>
-            <br />
-            <span className="text-white">Menjadi </span>
-            <span className="text-gray-400">Nyata.</span>
-          </h1>
-        </div>
+        {/* Wadah Konten Utama */}
+        <div className="max-w-5xl w-full mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16 text-left relative z-10 py-12">
+          
+          {/* === SISI KIRI: TEXT STACK INTRO ELEGAN === */}
+          <div className="w-full lg:w-1/2 flex flex-col items-start order-2 lg:order-1">
+            <div className={`transition-all duration-700 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+              <div className="inline-flex items-center px-4 py-2 rounded-full glass-card text-[#2DD4BF] font-semibold text-xs uppercase tracking-wider mb-6 border border-[#2DD4BF]/20 shadow-[0_0_15px_rgba(45,212,191,0.1)] backdrop-blur-md">
+                <span className="flex w-2 h-2 rounded-full bg-[#2DD4BF] mr-2 animate-pulse shadow-[0_0_8px_rgba(45,212,191,0.8)]" />
+                Multimedia Designer
+              </div>
+            </div>
+            <div className={`transition-all duration-700 delay-150 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-5 leading-[1.15] text-white">
+                Menciptakan <span className="gradient-text animate-text-glow">Visual,</span>
+                <br />
+                Menghidupkan <span className="text-gray-400">Imajinasi.</span>
+              </h1>
+            </div>
+            <div className={`transition-all duration-700 delay-300 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <p className="text-base md:text-lg text-gray-400 mb-8 leading-relaxed max-w-md font-medium">
+                Halo! Saya <span className="font-bold text-white">Ghilman Zikra</span>. Mahasiswa Teknik Informatika yang mendedikasikan hasrat visual untuk menyusun elemen multimedia estetik, desain media sosial kreatif, dan rancangan UI/UX yang interaktif.
+              </p>
+            </div>
+            <div className={`flex flex-col sm:flex-row gap-4 w-full sm:w-auto transition-all duration-700 delay-500 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <a href="#projects" className="group relative px-7 py-3.5 rounded-xl font-bold text-[#0A0E17] overflow-hidden shadow-[0_0_25px_rgba(45,212,191,0.25)] hover:shadow-[0_0_40px_rgba(45,212,191,0.45)] transition-all duration-300 hover:-translate-y-1 text-center">
+                <span className="absolute inset-0 bg-gradient-to-r from-[#2DD4BF] to-[#3B82F6] group-hover:from-[#5EEAD4] group-hover:to-[#60A5FA] transition-all duration-300" />
+                <span className="relative flex items-center justify-center gap-2 font-black tracking-wide">
+                  Eksplorasi Karya
+                  <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                </span>
+              </a>
+              <a href="#about" className="group px-7 py-3.5 rounded-xl font-bold glass-card glass-card-hover text-gray-300 hover:text-white transition-all duration-300 hover:-translate-y-1 text-center border border-white/5">
+                <span>Kenalan Lebih Jauh</span>
+              </a>
+            </div>
+          </div>
 
-        {/* CTA */}
-        <div className={`flex flex-col sm:flex-row gap-4 w-full sm:w-auto transition-all duration-700 delay-500 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <a
-            href="#projects"
-            className="group relative px-8 py-4 rounded-xl font-bold text-[#0A0E17] overflow-hidden shadow-[0_0_30px_rgba(45,212,191,0.25)] hover:shadow-[0_0_50px_rgba(45,212,191,0.45)] transition-all duration-300 hover:-translate-y-1"
-          >
-            <span className="absolute inset-0 bg-gradient-to-r from-[#2DD4BF] to-[#3B82F6] group-hover:from-[#5EEAD4] group-hover:to-[#60A5FA] transition-all duration-300" />
-            <span className="relative flex items-center gap-2 font-black">
-              Lihat Karya Saya
-              <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </span>
-          </a>
+          {/* === SISI KANAN: FOTO BULAT COSMIC & LOGO GAMBAR ASLI MELAYANG (BESAR) === */}
+          <div className={`w-full lg:w-1/2 flex justify-center relative order-1 lg:order-2 transition-all duration-1000 delay-300 ${heroVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+            
+            {/* Efek Pijaran Aura Elektrik di Belakang Foto */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-tr from-[#2DD4BF] to-[#3B82F6] rounded-full blur-[80px] opacity-30 animate-pulse pointer-events-none" />
 
-          <a
-            href="#about"
-            className="group px-8 py-4 rounded-xl font-bold glass-card glass-card-hover text-gray-300 hover:text-white transition-all duration-300 hover:-translate-y-1"
-          >
-            <span className="flex items-center gap-2">
-              Kenalan Lebih Jauh
-              <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-            </span>
-          </a>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className={`absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 transition-all duration-1000 delay-700 ${heroVisible ? 'opacity-100' : 'opacity-0'}`}>
-          <span className="text-gray-600 text-xs font-medium tracking-widest uppercase">Scroll</span>
-          <div className="w-[1px] h-10 bg-gradient-to-b from-[#2DD4BF]/60 to-transparent animate-pulse" />
-        </div>
-      </section>
-
-
-      {/* =============================================
-          SECTION 2 : ABOUT
-          ============================================= */}
-      <section id="about" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24" ref={aboutSection.ref}>
-        <GlassCard
-          className={`p-8 md:p-12 transition-all duration-700 ${aboutSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
-          hover={false}
-        >
-          {/* Left accent bar — teal → blue */}
-          <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#2DD4BF] via-[#3B82F6] to-transparent rounded-l-2xl" />
-
-          <div className="flex flex-col md:flex-row items-center gap-12">
-
-            {/* Profile photo */}
-            <div className="w-full md:w-1/3 flex justify-center">
-              <div className="relative group cursor-pointer">
-                {/* Glow */}
-                <div className="absolute -inset-3 rounded-full bg-gradient-to-r from-[#2DD4BF] to-[#3B82F6] blur-xl opacity-25 group-hover:opacity-55 group-hover:blur-2xl transition-all duration-500" />
-                {/* Spinning ring */}
-                <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#2DD4BF] via-[#3B82F6] to-[#2DD4BF] opacity-50 animate-spin" style={{ animationDuration: '8s' }} />
-                {/* Frame */}
-                <div className="relative w-56 h-56 md:w-64 md:h-64 rounded-full p-[3px] bg-gradient-to-br from-[#2DD4BF] to-[#3B82F6] transform transition-all duration-500 group-hover:-translate-y-3 group-hover:scale-105 shadow-[0_0_40px_rgba(45,212,191,0.25)] group-hover:shadow-[0_0_60px_rgba(45,212,191,0.5)]">
-                  <div className="w-full h-full rounded-full bg-[#0C111A] border border-white/10 overflow-hidden flex items-center justify-center">
-                    <img src="/foto-profil.png" alt="Ghilman Zikra" className="w-full h-full object-cover" />
-                  </div>
+            {/* BINGKAI FOTO BULAT COSMIC STYLE ABOUT SECTION */}
+            <div className="relative group cursor-pointer">
+              {/* Efek Bayangan Pijar Interaktif Tambahan */}
+              <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-[#2DD4BF] to-[#3B82F6] blur-2xl opacity-25 group-hover:opacity-60 group-hover:blur-3xl transition-all duration-500" />
+              {/* Cincin Kosmik Berputar */}
+              <div className="absolute -inset-1.5 rounded-full bg-gradient-to-r from-[#2DD4BF] via-[#3B82F6] to-[#2DD4BF] opacity-50 animate-spin" style={{ animationDuration: '9s' }} />
+              {/* Bingkai Utama - 🟡 SIZE UPGRADED TO MAXIMUM 🟡 */}
+              <div className="relative w-80 h-80 md:w-96 md:h-96 rounded-full p-[3px] bg-gradient-to-br from-[#2DD4BF] to-[#3B82F6] transform transition-all duration-500 group-hover:-translate-y-2 group-hover:scale-105 shadow-[0_0_40px_rgba(45,212,191,0.25)] group-hover:shadow-[0_0_60px_rgba(45,212,191,0.5)]">
+                <div className="w-full h-full rounded-full bg-[#0C111A] border border-white/10 overflow-hidden flex items-center justify-center relative">
+                  <img 
+                    src="/foto-non-formal.webp" 
+                    alt="Ghilman Zikra Creative Portrait" 
+                    className="w-full h-full object-cover"
+                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                  />
                 </div>
               </div>
             </div>
 
-            {/* Text */}
-            <div className="w-full md:w-2/3 flex flex-col gap-5">
-              <div>
-                <span className="text-[#2DD4BF] font-semibold text-sm tracking-widest uppercase">Tentang Saya</span>
-                <h2 className="text-3xl md:text-4xl font-black text-white mt-2">
-                  Designer <span className="gradient-text">Multimedia ✨</span>
-                </h2>
-              </div>
-
-              <p className="text-gray-400 leading-relaxed">
-                Hai! Aku Ghilman Zikra, seorang Multimedia Designer yang hobi menjembatani dunia visual dan teknologi. Fokus utama aku adalah memproduksi konten multimedia—mulai dari graphic design, produksi video kreatif, hingga fotografi. Sebagai anak Teknik Informatika, aku juga punya nilai plus di bidang UI/UX dan frontend development.
-              </p>
-
-              <p className="text-gray-400 leading-relaxed">
-                Dengan pengalaman memimpin berbagai tim kreatif, aku selalu siap menciptakan pengalaman digital yang rapi, estetik, dan efektif menyampaikan pesan.
-              </p>
-
-              {/* Tech stack tags */}
-              <div className="flex flex-wrap gap-2 mt-1">
-                {['Canva', 'Capcut', 'Figma', 'Illustrator', 'Photoshop'].map((skill) => (
-                  <span key={skill} className="px-3 py-1 text-xs font-semibold rounded-full glass-card border border-[#2DD4BF]/20 text-[#2DD4BF]">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-
-              <a
-                href="/cv.pdf"
-                download
-                className="group self-start flex items-center gap-3 px-6 py-3 rounded-xl bg-white/[0.05] hover:bg-[#2DD4BF]/[0.08] border border-white/10 hover:border-[#2DD4BF]/40 text-white font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(45,212,191,0.15)]"
-              >
-                <svg className="w-5 h-5 text-[#2DD4BF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
-                </svg>
-                Unduh CV Saya
-              </a>
+            {/* Icon-Icon Aplikasi Melayang */}
+            <div className="absolute -top-6 -left-6 md:left-2 animate-float glass-card border border-[#2DD4BF]/30 w-20 h-20 md:w-30 md:h-30 rounded-2xl shadow-2xl flex items-center justify-center backdrop-blur-md bg-[#0C111A]/60 select-none group/icon z-20" style={{ animationDuration: '5s' }}>
+              <img src="/icon/canva.png" alt="Canva Logo" className="w-10 h-10 md:w-25 md:h-25 object-contain transition-transform duration-300 group-hover/icon:scale-110" title="Canva" />
             </div>
+            <div className="absolute top-2 -right-6 md:right-4 animate-float glass-card border border-white/10 w-16 h-16 md:w-25 md:h-25 rounded-2xl shadow-2xl flex items-center justify-center backdrop-blur-md bg-black/60 select-none group/icon z-20" style={{ animationDuration: '6s', animationDelay: '1.5s' }}>
+              <img src="/icon/capcut.png" alt="CapCut Logo" className="w-10 h-10 md:w-20 md:h-20 object-contain transition-transform duration-300 group-hover/icon:scale-110" title="CapCut" />
+            </div>
+            <div className="absolute bottom-6 -left-8 md:left-0 animate-float glass-card border border-[#00C4FF]/40 w-16 h-16 md:w-20 md:h-20 rounded-2xl shadow-2xl flex items-center justify-center backdrop-blur-md bg-[#001c3a]/70 select-none group/icon z-20" style={{ animationDuration: '5.5s', animationDelay: '0.7s' }}>
+              <img src="/icon/photoshop.png" alt="Adobe Photoshop Logo" className="w-10 h-10 md:w-13 md:h-13 object-contain transition-transform duration-300 group-hover/icon:scale-110" title="Adobe Photoshop" />
+            </div>
+            <div className="absolute bottom-0 -right-8 md:right-2 animate-float glass-card border border-[#FF9A00]/40 w-16 h-16 md:w-25 md:h-25 rounded-2xl shadow-2xl flex items-center justify-center backdrop-blur-md bg-[#331700]/70 select-none group/icon z-20" style={{ animationDuration: '6.5s', animationDelay: '2.2s' }}>
+              <img src="/icon/illustrator.png" alt="Adobe Illustrator Logo" className="w-10 h-10 md:w-15 md:h-15 object-contain transition-transform duration-300 group-hover/icon:scale-110" title="Adobe Illustrator" />
+            </div>
+
           </div>
-        </GlassCard>
+
+        </div>
       </section>
 
 
-      {/* =============================================
-          SECTION 3 : GALERI KARYA (K KANTONG EKSPANSI INTERAKTIF)
+        {/* =============================================
+          SECTION 2 : GALERI KARYA (K KANTONG EKSPANSI INTERAKTIF)
           ============================================= */}
       <section id="projects" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24" ref={projectsSection.ref}>
 
@@ -333,7 +332,138 @@ export default function Home() {
 
 
       {/* =============================================
-          SECTION 4 : SERTIFIKAT
+          SECTION 3 : ABOUT
+          ============================================= */}
+      <section id="about" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24" ref={aboutSection.ref}>
+        <GlassCard
+          className={`p-8 md:p-12 transition-all duration-700 ${aboutSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+          hover={false}
+        >
+          {/* Left accent bar — teal → blue */}
+          <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#2DD4BF] via-[#3B82F6] to-transparent rounded-l-2xl" />
+
+          <div className="flex flex-col md:flex-row items-center gap-12">
+
+            {/* Profile photo */}
+            <div className="w-full md:w-1/3 flex justify-center">
+              <div className="relative group cursor-pointer">
+                {/* Glow */}
+                <div className="absolute -inset-3 rounded-full bg-gradient-to-r from-[#2DD4BF] to-[#3B82F6] blur-xl opacity-25 group-hover:opacity-55 group-hover:blur-2xl transition-all duration-500" />
+                {/* Spinning ring */}
+                <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[#2DD4BF] via-[#3B82F6] to-[#2DD4BF] opacity-50 animate-spin" style={{ animationDuration: '8s' }} />
+                {/* Frame */}
+                <div className="relative w-56 h-56 md:w-64 md:h-64 rounded-full p-[3px] bg-gradient-to-br from-[#2DD4BF] to-[#3B82F6] transform transition-all duration-500 group-hover:-translate-y-3 group-hover:scale-105 shadow-[0_0_40px_rgba(45,212,191,0.25)] group-hover:shadow-[0_0_60px_rgba(45,212,191,0.5)]">
+                  <div className="w-full h-full rounded-full bg-[#0C111A] border border-white/10 overflow-hidden flex items-center justify-center">
+                    <img src="/foto-profil.webp" alt="Ghilman Zikra" className="w-full h-full object-cover" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Text */}
+            <div className="w-full md:w-2/3 flex flex-col gap-5">
+              <div>
+                <span className="text-[#2DD4BF] font-semibold text-sm tracking-widest uppercase">Tentang Saya</span>
+                <h2 className="text-3xl md:text-4xl font-black text-white mt-2">
+                  Designer <span className="gradient-text">Multimedia ✨</span>
+                </h2>
+              </div>
+
+              <p className="text-gray-400 leading-relaxed">
+                Hai! Aku Ghilman Zikra, seorang Multimedia Designer yang hobi menjembatani dunia visual dan teknologi. Fokus utama aku adalah memproduksi konten multimedia—mulai dari graphic design, produksi video kreatif, hingga fotografi. Sebagai anak Teknik Informatika, aku juga punya nilai plus di bidang UI/UX dan frontend development.
+              </p>
+
+              <p className="text-gray-400 leading-relaxed">
+                Dengan pengalaman memimpin berbagai tim kreatif, aku selalu siap menciptakan pengalaman digital yang rapi, estetik, dan efektif menyampaikan pesan.
+              </p>
+
+              {/* Tech stack tags */}
+              <div className="flex flex-wrap gap-2 mt-1">
+                {['Canva', 'Capcut', 'Figma', 'Illustrator', 'Photoshop'].map((skill) => (
+                  <span key={skill} className="px-3 py-1 text-xs font-semibold rounded-full glass-card border border-[#2DD4BF]/20 text-[#2DD4BF]">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+
+              <a
+                href="/cv.pdf"
+                download
+                className="group self-start flex items-center gap-3 px-6 py-3 rounded-xl bg-white/[0.05] hover:bg-[#2DD4BF]/[0.08] border border-white/10 hover:border-[#2DD4BF]/40 text-white font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(45,212,191,0.15)]"
+              >
+                <svg className="w-5 h-5 text-[#2DD4BF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                </svg>
+                Unduh CV Saya
+              </a>
+            </div>
+          </div>
+        </GlassCard>
+      </section>
+
+
+      {/* =============================================
+          4. TOOLS MASTERY & SKILLS (Senjata Andalan)
+          ============================================= */}
+      <section id="skills" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24" ref={skillsSection.ref}>
+        <div className={`text-center mb-10 transition-all duration-700 ${skillsSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <span className="text-[#3B82F6] font-semibold text-sm tracking-widest uppercase">Keahlian</span>
+          <h2 className="text-3xl md:text-4xl font-black text-white mt-2">Senjata Andalan ⚔️</h2>
+        </div>
+        <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 transition-all duration-700 delay-200 ${skillsSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+          {skills.map((skillGroup, index) => (
+            <GlassCard key={index} className="p-8" hover={false}>
+              <h3 className="text-xl font-bold text-white mb-6 border-b border-white/10 pb-4">{skillGroup.category}</h3>
+              <div className="flex flex-wrap gap-3">
+                {skillGroup.items.map(item => (
+                  <span key={item} className="px-4 py-2 text-sm font-semibold rounded-xl bg-[#0A0E17]/80 border border-white/10 text-gray-300 hover:text-[#2DD4BF] hover:border-[#2DD4BF]/50 transition-colors cursor-default">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </GlassCard>
+          ))}
+        </div>
+      </section>
+
+
+      {/* =============================================
+          5. EXPERIENCE (Pembuktian Jam Terbang)
+          ============================================= */}
+      <section id="experience" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24" ref={expSection.ref}>
+        <div className={`text-center mb-12 transition-all duration-700 ${expSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <span className="text-[#2DD4BF] font-semibold text-sm tracking-widest uppercase">Rekam Jejak</span>
+          <h2 className="text-3xl md:text-4xl font-black text-white mt-2">Pengalaman Profesional 🚀</h2>
+        </div>
+
+        <div className={`relative transition-all duration-700 delay-200 ${expSection.inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+          {/* Garis vertikal timeline */}
+          <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-0 h-full w-[2px] bg-gradient-to-b from-[#2DD4BF]/50 via-[#3B82F6]/30 to-transparent" />
+          
+          <div className="flex flex-col gap-10">
+            {experiences.map((exp, index) => (
+              <div key={exp.id} className={`relative flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+                {/* Titik tengah timeline */}
+                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#0A0E17] border-2 border-[#2DD4BF] shadow-[0_0_10px_rgba(45,212,191,0.8)] z-10" />
+                
+                {/* Konten Card */}
+                <div className={`w-full md:w-1/2 pl-12 md:pl-0 ${index % 2 === 0 ? 'md:pr-12 text-left md:text-right' : 'md:pl-12 text-left'}`}>
+                  <GlassCard className="p-6 inline-block w-full" hover={true}>
+                    <span className="text-[#3B82F6] font-bold text-sm tracking-widest">{exp.date}</span>
+                    <h3 className="text-xl font-black text-white mt-1">{exp.role}</h3>
+                    <h4 className="text-gray-400 font-semibold mb-3">{exp.company}</h4>
+                    <p className="text-gray-500 text-sm leading-relaxed">{exp.desc}</p>
+                  </GlassCard>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+      {/* =============================================
+          SECTION 6 : SERTIFIKAT
           ============================================= */}
       <section id="certificates" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24" ref={certSection.ref}>
         <GlassCard
@@ -461,7 +591,7 @@ export default function Home() {
 
 
       {/* =============================================
-          SECTION 5 : KONTAK
+          SECTION 7 : KONTAK
           ============================================= */}
       <section id="contact" className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24 mb-10" ref={contactSection.ref}>
         <GlassCard
