@@ -1,91 +1,382 @@
-// data/projects.ts
-
-export interface ProjectItem {
-  id: number;
-  title: string;
-  category: 'Logo' | 'Flyer Digital' | 'Spanduk' | 'Sertifikat' | 'Twibbon' | 'Animasi';
-  shortDesc: string;
-  fullDesc: string;
-  image: string;
-  span: string;  // Untuk mengatur ukuran kotak di Bento Grid (lebar/tinggi)
-  color: string; // Background cadangan sebelum gambar dimuat
-  isWip?: boolean; // <-- Tambahan: Deteksi proyek belum selesai
-  badge?: string;  // <-- Tambahan: Teks untuk label di pojok kanan atas
-}
-
-export const projectsData: ProjectItem[] = [
-  // === CONTOH LOGO (Rasio 1:1 - Kotak Persegi Standar) ===
+export const projectsData = [
   {
     id: 1,
-    title: "Logo Pertama",
+    title: "Logo Ghilman Zikra",
     category: "Logo",
-    shortDesc: "Rasio 1:1 • Logo Identitas",
-    fullDesc: "Eksplorasi desain identitas visual berbentuk karakter manusia dengan presisi vektor yang tajam.",
-    image: "/galeri/logo/logo-pertama.webp", // Taruh di folder public
-    span: "md:col-span-1",    // Persegi standar (1 kolom)
-    color: "bg-orange-50/30 dark:bg-orange-900/20"
+    shortDesc: "Desain identitas visual untuk personal branding Ghilman Zikra.",
+    image: "/galeri/logo/Thumbnail_logo.webp", // Gambar Thumbnail (Rasio 4:5 / Persegi)
+    color: "from-blue-500/20 to-purple-500/20",
+    badge: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+    span: "md:col-span-1 md:row-span-1",
+    fullDesc: "Monogram 'GZ' merupakan representasi visual dari titik temu antara logika struktural dan kreativitas dinamis. Desain ini dibangun dengan tingkat presisi geometris yang tinggi, mencerminkan akurasi dan pola pikir komputasional yang kuat. Di saat yang sama, sentuhan lengkungan (micro-rounding) serta transisi warna Ocean Blue ke Soft Mint menghadirkan nuansa yang ramah, kolaboratif, dan inovatif. Ini adalah simbol identitas yang mengintegrasikan keandalan teknologi dengan komunikasi visual yang berpusat pada manusia (human-centric design).",
+    features: [
+      "Filosofi integrasi antara arsitektur teknologi & desain visual.",
+      "Skema warna Tech-Modern (Ocean Blue & Soft Mint)",
+      "Konstruksi presisi berbasis Modular Grid & Golden Ratio.",
+      "Sistem scalable (Monochrome, Full Color, Watermark)."
+    ],
+    tools: ["Adobe Illustrator", "Adobe Photoshop", "Canva Pro"],
+    demoLink: "#",
+    // 👇 UPGRADE: Tambahkan Full Image Presentasi 👇
+    fullImage: "/galeri/logo/PRESENTASI LOGO 4.webp"
   },
-  
-  // === CONTOH FLYER DIGITAL (Rasio 4:5 - Agak Tinggi ke Bawah) ===
-  {
-    id: 2,
-    title: "Hari Kebangkitan Nasional",
-    category: "Flyer Digital",
-    shortDesc: "Rasio 4:5 • Publikasi Instagram",
-    fullDesc: "Desain flyer instagram hari kebangkitan nasional dengan komposisi warna modern untuk feeds Instagram.",
-    image: "/galeri/flyer/harkitnas.webp",
-    span: "md:col-span-1 md:row-span-2", // Makan 2 baris ke bawah agar memanjang kebawah sesuai rasio 4:5
-    color: "bg-pink-50/30 dark:bg-pink-900/20"
-  },
-
-  // === CONTOH SPANDUK (Rasio 1:2 - Melebar ke Samping) ===
-  {
-    id: 3,
-    title: "Backdrop Milad TIF Ke-26",
-    category: "Spanduk",
-    shortDesc: "Rasio 1:2 • Desain Backdrop",
-    fullDesc: "Representasi mini dari desain spanduk asli ukuran 3x1 meter yang disederhanakan agar pas di layar.",
-    image: "/galeri/spanduk/Backdrop-Milad-TIFke-26.webp",
-    span: "md:col-span-1",    // Makan 2 kolom ke samping agar melebar sesuai rasio spanduk
-    color: "bg-blue-50/30 dark:bg-blue-900/20"
-  },
-
-  // === CONTOH TWIBBON (Rasio 1:1 - Kotak Persegi Standar) ===
   {
     id: 4,
     title: "Twibbon Maba TIF 2025",
     category: "Twibbon",
-    shortDesc: "Rasio 1:1 • Bingkai Kampanye",
-    fullDesc: "Bingkai twibbon untuk mahasiswa baru program studi Teknik Informatika.",
-    image: "/galeri/twibbon/twibbon-maba-tif-2025.webp",
-    span: "md:col-span-1",
-    color: "bg-teal-50/30 dark:bg-teal-900/20"
+    shortDesc: "Desain bingkai kampanye digital mahasiswa baru.",
+    image: "/galeri/twibbon/mockup twibbon.webp",
+    color: "from-amber-500/20 to-yellow-500/20",
+    badge: "bg-amber-500/10 text-amber-400 border-amber-500/20",
+    span: "md:col-span-1 md:row-span-1",
+    fullDesc: "Twibbon resmi untuk menyambut Mahasiswa Baru Teknik Informatika UIN Suska Riau angkatan 2025. Mengusung tema teknologi futuristik dengan sentuhan elemen cyber, desain ini dirancang untuk membangkitkan kebanggaan, euforia kelulusan, serta semangat kolaborasi mahasiswa baru saat melangkah ke dunia IT.",
+    features: [
+      "Tema 'Hello World': Menyimbolkan salam sapaan dan langkah pertama yang ikonik di dunia pemrograman.",
+      "Ilustrasi Relevan: Penggunaan elemen visual Artificial Intelligence, Virtual Reality, dan perangkat komputasi yang selaras dengan identitas jurusan.",
+      "Skema Warna Vibrant: Memadukan tech blue dan cyan yang fresh, modern, dan eye-catching di feed media sosial.",
+      "Ergonomi Desain: Tata letak bingkai asimetris yang dirancang proporsional agar komposisi foto wajah tetap menjadi pusat perhatian (center of attention)."
+    ],
+    tools: ["Canva Pro"],
+    demoLink: "#",
+    fullImage: "/galeri/twibbon/Mockup Twibbon 2025.webp" // Bisa diganti nanti
   },
-
+  {
+    id: 2,
+    title: "Pengelolaan Media Sosial HIMATIF 2026",
+    category: "Pengelolaan Media Sosial", // 🚀 Kategori berkelas baru!
+    shortDesc: "Strategi visual, kurasi konten, dan identitas digital Instagram HIMATIF Riau.",
+    image: "/galeri/flyer/himatif2026/thumbnail-sosmed.webp", // 📱 Masukkan file hasil ekspor Photoshop 3D-mu di sini
+    color: "from-red-500/20 to-orange-500/20",
+    badge: "bg-red-500/10 text-red-400 border-red-500/20",
+    span: "md:col-span-1 md:row-span-1",
+    fullDesc: "Mengarahkan kiblat visual dan manajemen konten digital untuk Instagram resmi Himpunan Mahasiswa Teknik Informatika (HIMATIF) periode 2026. Melalui pendekatan grid terstruktur 4:5, penentuan palet warna yang konsisten, dan tipografi bold modern, sistem ini dirancang untuk meningkatkan engagement sekaligus memperkuat digital branding organisasi.",
+    features: [
+      "Perencanaan & Manajemen Grid Estetik (4:5)",
+      "Konseptor Konten Publikasi & Dokumentasi Kreatif",
+      "Penerapan Design System & Konsistensi Font Organisasi",
+      "Kurasi Isu & Copywriting Tematik Interaktif"
+    ],
+    tools: ["Canva Pro", "Adobe Photoshop"],
+    demoLink: "#",
+    // 🎠 11 Slot Flyer High-Res kamu dimasukkan ke kantong array ini:
+    images: [
+      "/galeri/flyer/himatif2026/Hari-Lahir-Pancasila.webp", // Gambar default ke-1
+      "/galeri/flyer/himatif2026/Sambutan-MabaTif-SNBT.webp",
+      "/galeri/flyer/himatif2026/Postingan-Apresiasi-Rakerwil.webp",
+      "/galeri/flyer/himatif2026/Media-Partner-FIT.webp",
+      "/galeri/flyer/himatif2026/Hari-Kebangkitan-Nasional.webp",
+      "/galeri/flyer/himatif2026/Sambutan-MabaTif-SNBP.webp",
+      "/galeri/flyer/himatif2026/Postingan-Apresiasi-CloudCamp.webp",
+      "/galeri/flyer/himatif2026/Hari-Buruh-Internasional.webp",
+    ]
+  },
+  {
+    id: 3,
+    title: "Backdrop Milad TIF Ke-26",
+    category: "Spanduk",
+    shortDesc: "Desain backdrop panggung utama Milad Teknik Informatika.",
+    image: "/galeri/spanduk/Backdrop-Milad-TIFke-26.webp",
+    color: "from-emerald-500/20 to-teal-500/20",
+    badge: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+    span: "md:col-span-1 md:row-span-1",
+    fullDesc: "Perancangan desain spanduk/backdrop berskala besar (high-resolution) yang digunakan sebagai latar panggung utama pada acara puncak peringatan Hari Ulang Tahun (Milad) Teknik Informatika UIN Suska Riau yang ke-26.",
+    features: [
+      "Resolusi tinggi untuk cetak besar (Banner 4x3m)",
+      "Elemen 3D dan pencahayaan panggung",
+      "Pengaturan color profile CMYK untuk percetakan",
+      "Integrasi logo sponsor dan partner"
+    ],
+    tools: ["Adobe Illustrator", "Adobe Photoshop"],
+    demoLink: "#",
+    fullImage: "/galeri/spanduk/Backdrop-Milad-TIFke-26.webp" // Bisa diganti nanti
+  },
   {
     id: 5,
-    title: "Sertifikat Simatif 2024",
-    category: "Sertifikat",
-    shortDesc: "Rasio 1:1 • Sertifikat Kegiatan",
-    fullDesc: "Sertifikat kegiatan untuk peserta Simatif 2024.",
+    title: "Desain Sertifikat Peserta Simatif",
+    category: "Desain Sertifikat",
+    shortDesc: "Desain sertifikat kegiatan Simatif 2024.",
     image: "/galeri/sertifikat/Sertifikat-Peserta-Simatif-2024.webp",
-    span: "md:col-span-1",
-    color: "bg-green-50/30 dark:bg-green-900/20"
+    color: "from-cyan-500/20 to-blue-500/20",
+    badge: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
+    span: "md:col-span-1 md:row-span-1",
+    fullDesc: "Pembuatan template sertifikat resmi berdesain elegan dan berwibawa yang dibagikan kepada seluruh peserta, pemateri, dan panitia kegiatan Simatif (Silaturahmi Mahasiswa Teknik Informatika) 2024.",
+    features: [
+      "Layout lanskap formal",
+      "Desain ornamen border estetik",
+      "Format mail-merge ready (Kosong bagian nama)",
+      "Desain stempel/pita (Ribbon)"
+    ],
+    tools: ["Adobe Illustrator", "CorelDraw"],
+    demoLink: "#",
+    fullImage: "/galeri/sertifikat/Sertifikat-Peserta-Simatif-2024.webp" // Bisa diganti nanti
   },
-
   {
     id: 6,
+    title: "Logo Angkatan 2005",
+    category: "Logo",
+    shortDesc: "Desain logo reuni angkatan 2005 Ikasmansa.",
+    image: "/galeri/logo/Logo-Angkatan-2005-Ikasmansa.webp",
+    color: "from-rose-500/20 to-pink-500/20",
+    badge: "bg-rose-500/10 text-rose-400 border-rose-500/20",
+    span: "md:col-span-1 md:row-span-1",
+    fullDesc: "Proses re-branding dan desain logo peringatan reuni akbar angkatan 2005 Ikasmansa. Logo ini menyiratkan tali persaudaraan yang tak pernah putus melintasi waktu dengan gaya retro-modern.",
+    features: [
+      "Tipografi kustom (Custom Logotype)",
+      "Penggunaan negative space",
+      "Konsep monogram",
+      "Brand guidelines booklet"
+    ],
+    tools: ["Adobe Illustrator", "Figma", "Adobe Photoshop"],
+    demoLink: "#",
+    fullImage: "/galeri/logo/Logo-Angkatan-2005-Ikasmansa.webp" // Bisa diganti nanti
+  },
+  {
+    id: 14,
     title: "Logo Asomatif 2024",
     category: "Logo",
-    shortDesc: "Rasio 1:1 • Logo Identitas",
-    fullDesc: "Logo identitas untuk kegiatan Asomatif 2024.",
+    shortDesc: "Desain logo kegiatan Asomatif 2024.",
     image: "/galeri/logo/Logo-Asomatif-2024.webp",
-    span: "md:col-span-1",
-    color: "bg-green-50/30 dark:bg-green-900/20"
+    color: "from-rose-500/20 to-pink-500/20",
+    badge: "bg-rose-500/10 text-rose-400 border-rose-500/20",
+    span: "md:col-span-1 md:row-span-1",
+    fullDesc: "Desain logo untuk kegiatan Asomatif 2024. Logo ini menyiratkan tali persaudaraan yang tak pernah putus melintasi waktu dengan gaya retro-modern.",
+    features: [
+      "Tipografi kustom (Custom Logotype)",
+      "Penggunaan negative space",
+      "Konsep monogram",
+      "Brand guidelines booklet"
+    ],
+    tools: ["Canva Pro"],
+    demoLink: "#",
+    fullImage: "/galeri/logo/Logo-Asomatif-2024.webp" // Bisa diganti nanti
+  },
+  {
+    id: 15,
+    title: "Logo Milad TIF ke-26",
+    category: "Logo",
+    shortDesc: "Desain logo peringatan Hari Ulang Tahun Teknik Informatika UIN Suska Riau.",
+    image: "/galeri/logo/Logo-Milad-TIF-ke-26.webp",
+    color: "from-rose-500/20 to-pink-500/20",
+    badge: "bg-rose-500/10 text-rose-400 border-rose-500/20",
+    span: "md:col-span-1 md:row-span-1",
+    fullDesc: "Desain logo untuk peringatan Hari Ulang Tahun Teknik Informatika UIN Suska Riau yang ke-26. Logo ini menyiratkan tali persaudaraan yang tak pernah putus melintasi waktu dengan gaya retro-modern.",
+    features: [
+      "Tipografi kustom (Custom Logotype)",
+      "Penggunaan negative space",
+      "Konsep monogram",
+      "Brand guidelines booklet"
+    ],
+    tools: ["Canva Pro"],
+    demoLink: "#",
+    fullImage: "/galeri/logo/Logo-Milad-TIF-ke-26.webp" // Bisa diganti nanti
+  },
+  {
+    id: 16,
+    title: "Backdrop Reuni Angkatan 2005",
+    category: "Spanduk",
+    shortDesc: "Desain backdrop untuk acara reuni angkatan 2005.",
+    image: "/galeri/spanduk/Backdrop-3x3-meter.webp",
+    color: "from-rose-500/20 to-pink-500/20",
+    badge: "bg-rose-500/10 text-rose-400 border-rose-500/20",
+    span: "md:col-span-1 md:row-span-1",
+    fullDesc: "Desain backdrop untuk acara reuni angkatan 2005. Backdrop ini menyiratkan tali persaudaraan yang tak pernah putus melintasi waktu dengan gaya retro-modern.",
+    features: [
+      "Tipografi kustom (Custom Logotype)",
+      "Penggunaan negative space",
+      "Konsep monogram",
+      "Brand guidelines booklet"
+    ],
+    tools: ["Canva Pro"],
+    demoLink: "#",
+    fullImage: "/galeri/spanduk/Backdrop-3x3-meter.webp" // Bisa diganti nanti
+  },
+  {
+    id: 17,
+    title: "Spanduk Seminar Rakerwil",
+    category: "Spanduk",
+    shortDesc: "Desain backdrop untuk acara seminar rakerwil.",
+    image: "/galeri/spanduk/Spanduk-Seminar-Rakerwil-Permikomnas.webp",
+    color: "from-rose-500/20 to-pink-500/20",
+    badge: "bg-rose-500/10 text-rose-400 border-rose-500/20",
+    span: "md:col-span-1 md:row-span-1",
+    fullDesc: "Desain backdrop untuk acara seminar rakerwil. Backdrop ini menyiratkan tali persaudaraan yang tak pernah putus melintasi waktu dengan gaya retro-modern.",
+    features: [
+      "Tipografi kustom (Custom Logotype)",
+      "Penggunaan negative space",
+      "Konsep monogram",
+      "Brand guidelines booklet"
+    ],
+    tools: ["Canva Pro"],
+    demoLink: "#",
+    fullImage: "/galeri/spanduk/Spanduk-Seminar-Rakerwil-Permikomnas.webp" // Bisa diganti nanti
+  },
+  {
+    id: 18,
+    title: "Spanduk Berbagi Takjil",
+    category: "Spanduk",
+    shortDesc: "Desain backdrop untuk acara berbagi takjil.",
+    image: "/galeri/spanduk/SPANDUK-BERBAGI-TAKJIL.webp",
+    color: "from-rose-500/20 to-pink-500/20",
+    badge: "bg-rose-500/10 text-rose-400 border-rose-500/20",
+    span: "md:col-span-1 md:row-span-1",
+    fullDesc: "Desain backdrop untuk acara berbagi takjil . Backdrop ini menyiratkan tali persaudaraan yang tak pernah putus melintasi waktu dengan gaya retro-modern.",
+    features: [
+      "Tipografi kustom (Custom Logotype)",
+      "Penggunaan negative space",
+      "Konsep monogram",
+      "Brand guidelines booklet"
+    ],
+    tools: ["Canva Pro"],
+    demoLink: "#",
+    fullImage: "/galeri/spanduk/SPANDUK-BERBAGI-TAKJIL.webp" // Bisa diganti nanti
+  },
+
+
+
+  // ==========================================
+  // SERTIFIKAT KEPEMIMPINAN & ORGANISASI
+  // ==========================================
+  {
+    id: 7,
+    title: "Ketua Pelaksana Kurmatif Ke-IX 2025",
+    category: "Sertifikat",
+    shortDesc: "Sertifikat penghargaan sebagai Ketua Pelaksana.",
+    // Sesuaikan nama file image dengan nama file aslinya di folder public!
+    image: "/galeri/sertifikat/Sertifikat-Ketua-Kurmatif.webp", 
+    color: "from-cyan-500/20 to-blue-500/20",
+    badge: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
+    span: "md:col-span-1 md:row-span-1",
+    fullDesc: "Diberikan oleh Himpunan Mahasiswa Teknik Informatika (HIMATIF) atas dedikasi dan kepemimpinan yang berhasil menyukseskan acara Kumpul Ramadhan Mahasiswa Teknik Informatika (KURMATIF) ke-IX pada tanggal 18 Maret 2025.",
+    features: [
+      "Manajemen Proyek Acara",
+      "Kepemimpinan & Kordinasi Tim",
+      "Problem Solving Lapangan"
+    ],
+    tools: [], // Kosongkan jika tidak relevan untuk sertifikat
+    demoLink: "#",
+    fullImage: "/galeri/sertifikat/Sertifikat-Ketua-Kurmatif.webp" // Sesuaikan nama filenya!
+  },
+  {
+    id: 8,
+    title: "Wakil Kepala Departemen Infokom HIMATIF 2025",
+    category: "Sertifikat",
+    shortDesc: "Sertifikat Apresiasi Pengurus HIMATIF Periode 2025.",
+    // Sesuaikan nama file image!
+    image: "/galeri/sertifikat/Sertifikat-Pengurus-Himatif.webp", 
+    color: "from-cyan-500/20 to-blue-500/20",
+    badge: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
+    span: "md:col-span-1 md:row-span-1",
+    fullDesc: "Diberikan atas dedikasi sebagai Wakil Kepala Departemen Informasi dan Komunikasi (INFOKOM) HIMATIF Periode 2025. Bertanggung jawab atas pengelolaan lini massa digital, produksi media, dan branding organisasi tingkat jurusan.",
+    features: [
+      "Digital Branding & Media Management",
+      "Kolaborasi antar Departemen",
+      "Pengembangan Kreatif Organisasi"
+    ],
+    tools: [],
+    demoLink: "#",
+    fullImage: "/galeri/sertifikat/Sertifikat-Pengurus-Himatif.webp" 
+  },
+  {
+    id: 9,
+    title: "Koordinator Divisi HID ASOMATIF 2025",
+    category: "Sertifikat",
+    shortDesc: "Sertifikat Penghargaan Koordinator Divisi HID ASOMATIF.",
+    // Sesuaikan nama file image!
+    image: "/galeri/sertifikat/Sertifikat-CO-HID-Asomatif.webp", 
+    color: "from-cyan-500/20 to-blue-500/20",
+    badge: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
+    span: "md:col-span-1 md:row-span-1",
+    fullDesc: "Diberikan atas kontribusi sebagai Koordinator Divisi Hubungan Masyarakat, Informasi, dan Dokumentasi (HID) pada acara ASOMATIF 2025. Mengatur lalu lintas informasi, dokumentasi visual, dan publikasi acara berskala kampus.",
+    features: [
+      "Manajemen Informasi dan Publikasi",
+      "Dokumentasi Visual (Fotografi & Videografi)",
+      "Public Relations"
+    ],
+    tools: [],
+    demoLink: "#",
+    fullImage: "/galeri/sertifikat/Sertifikat-CO-HID-Asomatif.webp" 
+  },
+  {
+    id: 10,
+    title: "Panitia PORSENI VI",
+    category: "Sertifikat",
+    shortDesc: "Sertifikat Partisipasi Panitia PORSENI VI.",
+    // Sesuaikan nama file image!
+    image: "/galeri/sertifikat/Sertifikat-Panitia-Porseni.webp", 
+    color: "from-cyan-500/20 to-blue-500/20",
+    badge: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
+    span: "md:col-span-1 md:row-span-1",
+    fullDesc: "Diberikan atas partisipasi dan kerja keras sebagai Panitia pada ajang Pekan Olahraga dan Seni (PORSENI) VI yang diselenggarakan oleh HIMATIF dari tanggal 18 - 29 Juni 2025.",
+    features: [
+      "Kerjasama Tim (Teamwork)",
+      "Manajemen Acara Olahraga dan Seni"
+    ],
+    tools: [],
+    demoLink: "#",
+    fullImage: "/galeri/sertifikat/Sertifikat-Panitia-Porseni.webp" 
+  },
+
+  // ==========================================
+  // SERTIFIKAT KEAHLIAN / KURSUS (COURSE)
+  // ==========================================
+  {
+    id: 11,
+    title: "Oracle Academy: Java Programming",
+    category: "Sertifikat",
+    shortDesc: "Sertifikat Penyelesaian Kursus Java Programming.",
+    // Sesuaikan nama file image!
+    image: "/galeri/sertifikat/Sertifikat-Oracle-Java.webp", 
+    color: "from-purple-500/20 to-pink-500/20",
+    badge: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+    span: "md:col-span-1 md:row-span-1",
+    fullDesc: "Sertifikat kelulusan yang diterbitkan oleh Oracle Academy (diwakili oleh William McCabe, Vice President) atas keberhasilan menyelesaikan kursus Java Programming secara komprehensif pada 11 November 2024.",
+    features: [
+      "Pemahaman konsep Object-Oriented Programming (OOP)",
+      "Logika Pemrograman Dasar Java",
+      "Struktur Kontrol & Algoritma"
+    ],
+    tools: ["Java"],
+    demoLink: "#",
+    fullImage: "/galeri/sertifikat/Sertifikat-Oracle-Java.webp" 
+  },
+  {
+    id: 12,
+    title: "Oracle Academy: Database Programming with SQL",
+    category: "Sertifikat",
+    shortDesc: "Sertifikat Penyelesaian Kursus SQL.",
+    // Sesuaikan nama file image!
+    image: "/galeri/sertifikat/Sertifikat-Oracle-SQL.webp", 
+    color: "from-purple-500/20 to-pink-500/20",
+    badge: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+    span: "md:col-span-1 md:row-span-1",
+    fullDesc: "Sertifikat kelulusan dari Oracle Academy untuk kursus Database Programming with SQL pada 10 Desember 2024. Menunjukkan kompetensi dalam memanipulasi dan mengelola basis data relasional.",
+    features: [
+      "Query SQL Dasar hingga Lanjut (SELECT, JOIN, SUBQUERY)",
+      "Data Manipulation Language (DML)",
+      "Data Definition Language (DDL)"
+    ],
+    tools: ["SQL", "Oracle Database"],
+    demoLink: "#",
+    fullImage: "/galeri/sertifikat/Sertifikat-Oracle-SQL.webp" 
+  },
+  {
+    id: 13,
+    title: "SoloLearn: Introduction to Java",
+    category: "Sertifikat",
+    shortDesc: "Course Certificate by SoloLearn (Yeva Hyusyan).",
+    // Sesuaikan nama file image!
+    image: "/galeri/sertifikat/Sertifikat-Sololearn-Java.webp", 
+    color: "from-purple-500/20 to-pink-500/20",
+    badge: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+    span: "md:col-span-1 md:row-span-1",
+    fullDesc: "Sertifikat kursus interaktif dari SoloLearn yang diterbitkan pada 27 September 2023. Membuktikan pemahaman teoritis dan praktis tentang bahasa pemrograman Java di tingkat fundamental.",
+    features: [
+      "Pengenalan Sintaks Java",
+      "Variabel dan Tipe Data",
+      "Penyelesaian Studi Kasus Sederhana"
+    ],
+    tools: ["Java"],
+    demoLink: "#",
+    fullImage: "/galeri/sertifikat/Sertifikat-Sololearn-Java.webp" 
   }
-
-
-
-  // 💡 JIKA MAU MENAMBAH GAMBAR BARU SAMPAI 100 BIJI:
-  // Tinggal copy-paste format kurung kurawal di atas, pisahkan dengan koma (,), lalu urutkan id-nya!
 ];

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`} data-scroll-behavior="smooth">
       <body className="min-h-full flex flex-col bg-[#0A0E17] text-gray-100 overflow-x-hidden">
 
         {/* ===== AURORA BACKGROUND — teal + ocean blue ===== */}
@@ -44,7 +44,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </div>
 
         <Navbar />
-        <main className="flex-grow pt-20">{children}</main>
+        <main className="flex-grow">{children}</main>
         <Footer />
       </body>
     </html>
