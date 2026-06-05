@@ -2,7 +2,7 @@ export const projectsData = [
   {
     id: 1,
     title: "Logo Ghilman Zikra",
-    category: "Logo",
+    category: "Desain Logo",
     shortDesc: "Desain identitas visual untuk personal branding Ghilman Zikra.",
     image: "/galeri/logo/Thumbnail_logo.webp", // Gambar Thumbnail (Rasio 4:5 / Persegi)
     color: "from-blue-500/20 to-purple-500/20",
@@ -23,7 +23,7 @@ export const projectsData = [
   {
     id: 4,
     title: "Twibbon Maba TIF 2025",
-    category: "Twibbon",
+    category: "Desain Twibbon",
     shortDesc: "Desain bingkai kampanye digital mahasiswa baru.",
     image: "/galeri/twibbon/mockup twibbon.webp",
     color: "from-amber-500/20 to-yellow-500/20",
@@ -43,7 +43,7 @@ export const projectsData = [
   {
     id: 2,
     title: "Pengelolaan Media Sosial HIMATIF 2026",
-    category: "Pengelolaan Media Sosial", // 🚀 Kategori berkelas baru!
+    category: "Desain Media Sosial", // 🚀 Kategori berkelas baru!
     shortDesc: "Strategi visual, kurasi konten, dan identitas digital Instagram HIMATIF Riau.",
     image: "/galeri/flyer/himatif2026/thumbnail-sosmed.webp", // 📱 Masukkan file hasil ekspor Photoshop 3D-mu di sini
     color: "from-red-500/20 to-orange-500/20",
@@ -73,7 +73,7 @@ export const projectsData = [
   {
     id: 3,
     title: "Backdrop Milad TIF Ke-26",
-    category: "Spanduk",
+    category: "Desain Spanduk",
     shortDesc: "Desain backdrop panggung utama Milad Teknik Informatika.",
     image: "/galeri/spanduk/Backdrop-Milad-TIFke-26.webp",
     color: "from-emerald-500/20 to-teal-500/20",
@@ -113,7 +113,7 @@ export const projectsData = [
   {
     id: 6,
     title: "Logo Angkatan 2005",
-    category: "Logo",
+    category: "Desain Logo",
     shortDesc: "Desain logo reuni angkatan 2005 Ikasmansa.",
     image: "/galeri/logo/Logo-Angkatan-2005-Ikasmansa.webp",
     color: "from-rose-500/20 to-pink-500/20",
@@ -133,7 +133,7 @@ export const projectsData = [
   {
     id: 14,
     title: "Logo Asomatif 2024",
-    category: "Logo",
+    category: "Desain Logo",
     shortDesc: "Desain logo kegiatan Asomatif 2024.",
     image: "/galeri/logo/Logo-Asomatif-2024.webp",
     color: "from-rose-500/20 to-pink-500/20",
@@ -153,7 +153,7 @@ export const projectsData = [
   {
     id: 15,
     title: "Logo Milad TIF ke-26",
-    category: "Logo",
+    category: "Desain Logo",
     shortDesc: "Desain logo peringatan Hari Ulang Tahun Teknik Informatika UIN Suska Riau.",
     image: "/galeri/logo/Logo-Milad-TIF-ke-26.webp",
     color: "from-rose-500/20 to-pink-500/20",
@@ -173,7 +173,7 @@ export const projectsData = [
   {
     id: 16,
     title: "Backdrop Reuni Angkatan 2005",
-    category: "Spanduk",
+    category: "Desain Spanduk",
     shortDesc: "Desain backdrop untuk acara reuni angkatan 2005.",
     image: "/galeri/spanduk/Backdrop-3x3-meter.webp",
     color: "from-rose-500/20 to-pink-500/20",
@@ -193,7 +193,7 @@ export const projectsData = [
   {
     id: 17,
     title: "Spanduk Seminar Rakerwil",
-    category: "Spanduk",
+    category: "Desain Spanduk",
     shortDesc: "Desain backdrop untuk acara seminar rakerwil.",
     image: "/galeri/spanduk/Spanduk-Seminar-Rakerwil-Permikomnas.webp",
     color: "from-rose-500/20 to-pink-500/20",
@@ -213,7 +213,7 @@ export const projectsData = [
   {
     id: 18,
     title: "Spanduk Berbagi Takjil",
-    category: "Spanduk",
+    category: "Desain Spanduk",
     shortDesc: "Desain backdrop untuk acara berbagi takjil.",
     image: "/galeri/spanduk/SPANDUK-BERBAGI-TAKJIL.webp",
     color: "from-rose-500/20 to-pink-500/20",
