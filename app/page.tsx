@@ -52,12 +52,15 @@ export default function Home() {
   const [selectedProject, setSelectedProject] = useState<any | null>(null);
   const [showCertificates, setShowCertificates] = useState(false);
   const [heroVisible, setHeroVisible]       = useState(false);
-
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
 
-  // Otomatis reset index ke angka 0 setiap kali user membuka popup karya lain
+// 🚀 STATE BARU: Untuk mengatur Buka/Tutup deskripsi di Mobile
+  const [isDescExpanded, setIsDescExpanded] = useState(false);
+
+  // Otomatis reset ke default setiap kali user membuka popup karya lain
   useEffect(() => {
     setCurrentImgIndex(0);
+    setIsDescExpanded(false); // 🚀 Reset deskripsi jadi tertutup
   }, [selectedProject]);
 
   const aboutSection    = useInView();
@@ -588,18 +591,17 @@ export default function Home() {
 
 
       {/* =============================================
-          MODAL POP-UP (KARYA DETAIL - SPLIT LAYOUT)
+          MODAL POP-UP (KARYA DETAIL - TIKTOK LAYOUT MOBILE / SPLIT DESKTOP)
           ============================================= */}
       {selectedProject && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
-          {/* Latar Belakang Blur Hitam */}
           <div
             className="absolute inset-0 bg-[#0A0E17]/90 backdrop-blur-xl transition-opacity"
             onClick={() => setSelectedProject(null)}
           />
           
-          {/* Kotak Modal Raksasa */}
-          <div className="relative z-10 w-full max-w-6xl max-h-[90vh] bg-[#0C111A] border border-white/10 rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-[0_0_50px_rgba(0,0,0,0.8)] animate-scale-up">
+          {/* KOTAK UTAMA MODAL */}
+          <div className="relative z-10 w-full max-w-6xl max-h-[90vh] h-[85vh] md:h-auto md:max-h-[85vh] bg-[#0C111A] border border-white/10 rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-[0_0_50px_rgba(0,0,0,0.8)] animate-scale-up">
             
             {/* Tombol Tutup (Silang) */}
             <button
@@ -609,119 +611,105 @@ export default function Home() {
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
 
-            {/* SISI KIRI: Informasi & Detail Karya */}
-            {/* 🚀 UPGRADE: Tambahkan order-2 md:order-1 agar di HP teks ini pindah ke bawah gambar */}
-            <div className="w-full md:w-1/2 p-6 sm:p-8 md:p-12 overflow-y-auto flex flex-col gap-6 md:border-r border-white/5 custom-scrollbar order-2 md:order-1">
-               {/* Isi teks dibiarkan sama */}
-              
-              <div>
-                <span className={`inline-block px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border mb-4 ${selectedProject.badge ?? 'bg-[#2DD4BF]/10 text-[#2DD4BF] border-[#2DD4BF]/20'}`}>
-                  {selectedProject.category}
-                </span>
-                <h2 className="text-3xl md:text-5xl font-black text-white leading-[1.1]">{selectedProject.title}</h2>
-              </div>
-
-              <p className="text-gray-400 leading-relaxed text-base md:text-lg">
-                {selectedProject.fullDesc}
-              </p>
-
-              {/* Fitur / Highlight */}
-              {selectedProject.features && (
-                <div className="mt-2">
-                  <h4 className="text-white font-bold mb-3 flex items-center gap-2 text-lg">
-                    <span className="text-[#2DD4BF]">✨</span> Highlight
-                  </h4>
-                  <ul className="space-y-3">
-                    {selectedProject.features.map((feat: string, i: number) => (
-                      <li key={i} className="flex items-start gap-3 text-gray-400 text-sm md:text-base leading-relaxed">
-                        <svg className="w-5 h-5 text-[#3B82F6] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        {feat}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Tools / Aplikasi yang dipakai */}
-              {selectedProject.tools && (
-                <div className="mt-4 pt-6 border-t border-white/5">
-                  <h4 className="text-white font-bold mb-4 flex items-center gap-2">
-                    <span className="text-amber-500">🛠️</span> Tools & Aplikasi
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.tools.map((tool: string, i: number) => (
-                      <span key={i} className="px-4 py-2 text-xs md:text-sm font-semibold rounded-xl bg-white/5 border border-white/10 text-gray-300">
-                        {tool}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
             {/* ========================================================
-                SISI KANAN: LAYAR CERDAS (CAROUSEL ATAU SCROLLABLE)
+                SISI GAMBAR: DI MOBILE JADI BACKGROUND FULL, DI DESKTOP JADI KANAN
                 ======================================================== */}
-            {selectedProject.images && selectedProject.images.length > 0 ? (
+            <div className={`absolute inset-0 md:relative w-full md:w-1/2 bg-[#05080F] flex items-center justify-center order-1 md:order-2 z-0 transition-all duration-300 ${isDescExpanded ? 'pointer-events-none md:pointer-events-auto filter brightness-50 md:brightness-100' : ''}`}>
               
-              /* ➡️ MODE 1: CAROUSEL (Untuk Social Media Management) */
-              <div className="w-full md:w-1/2 bg-[#05080F] relative h-[50vh] md:h-auto flex items-center justify-center overflow-hidden order-1 md:order-2">
-                <div className="relative w-full h-full flex items-center justify-center p-4 sm:p-8">
-                  
-                  {/* Tampilan Gambar Aktif */}
-                  <img 
-                    src={selectedProject.images[currentImgIndex]} 
-                    alt={`${selectedProject.title} - ${currentImgIndex + 1}`}
-                    loading="lazy" 
-                    decoding="async"
-                    className="max-w-full max-h-[75vh] object-contain rounded-xl shadow-2xl border border-white/5 animate-scale-up"
-                  />
-
-                  {/* Tombol Navigasi Kiri */}
-                  <button
-                    onClick={() => setCurrentImgIndex((prev) => (prev === 0 ? selectedProject.images.length - 1 : prev - 1))}
-                    className="absolute left-4 z-20 w-10 h-10 md:w-11 md:h-11 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white flex items-center justify-center hover:bg-[#2DD4BF] hover:text-[#0A0E17] transition-all"
-                  >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
-                  </button>
-
-                  {/* Tombol Navigasi Kanan */}
-                  <button
-                    onClick={() => setCurrentImgIndex((prev) => (prev === selectedProject.images.length - 1 ? 0 : prev + 1))}
-                    className="absolute right-4 z-20 w-10 h-10 md:w-11 md:h-11 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white flex items-center justify-center hover:bg-[#2DD4BF] hover:text-[#0A0E17] transition-all"
-                  >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
-                  </button>
-
-                  {/* Badge Indikator Angka */}
-                  <div className="absolute bottom-6 px-4 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-xs font-mono font-bold text-[#2DD4BF]">
+              {selectedProject.images && selectedProject.images.length > 0 ? (
+                /* ➡️ MODE 1: CAROUSEL */
+                <div className="relative w-full h-full flex items-center justify-center p-4 md:p-8 pb-24 md:pb-8">
+                  <img src={selectedProject.images[currentImgIndex]} alt={`${selectedProject.title} - ${currentImgIndex + 1}`} className="max-w-full max-h-full md:max-h-[75vh] object-contain rounded-xl shadow-2xl border border-white/5 animate-scale-up" />
+                  <button onClick={() => setCurrentImgIndex((prev) => (prev === 0 ? selectedProject.images.length - 1 : prev - 1))} className="absolute left-4 z-20 w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white flex items-center justify-center hover:bg-[#2DD4BF] hover:text-[#0A0E17] transition-all"><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg></button>
+                  <button onClick={() => setCurrentImgIndex((prev) => (prev === selectedProject.images.length - 1 ? 0 : prev + 1))} className="absolute right-4 z-20 w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white flex items-center justify-center hover:bg-[#2DD4BF] hover:text-[#0A0E17] transition-all"><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg></button>
+                  <div className="absolute top-6 md:bottom-6 md:top-auto px-4 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-xs font-mono font-bold text-[#2DD4BF]">
                     {currentImgIndex + 1} / {selectedProject.images.length}
                   </div>
                 </div>
-              </div>
-
-            ) : (
-
-              /* ➡️ MODE 2: SCROLLABLE / SINGLE IMAGE (Untuk Presentasi Logo & Sertifikat) */
-              <div className="w-full md:w-1/2 bg-[#05080F] relative h-[50vh] md:h-auto overflow-y-auto custom-scrollbar order-1 md:order-2">
-                <div className="p-4 sm:p-8 flex items-start justify-center min-h-full w-full">
+              ) : (
+                /* ➡️ MODE 2: SCROLLABLE / SINGLE IMAGE */
+                <div className={`w-full h-full flex items-start justify-center p-4 md:p-8 pb-32 md:pb-8 ${isDescExpanded ? 'overflow-hidden md:overflow-y-auto' : 'overflow-y-auto'} custom-scrollbar`}>
                   {(selectedProject.fullImage || selectedProject.image) ? (
                     <img 
                       src={selectedProject.fullImage || selectedProject.image} 
                       alt={selectedProject.title} 
+                      className="w-full h-auto rounded-xl shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-white/5" 
                       loading="lazy"
                       decoding="async"
-                      // Class w-full dan h-auto memastikan presentasi 5000px kamu memanjang ke bawah dan bisa discroll!
-                      className="w-full h-auto rounded-xl shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-white/5"
                     />
                   ) : (
                     <div className="text-gray-500 font-medium">Tidak ada gambar detail</div>
                   )}
                 </div>
+              )}
+            </div>
+
+            {/* ========================================================
+                SISI TEKS: DI MOBILE JADI OVERLAY BAWAH (TIKTOK STYLE), DI DESKTOP JADI KIRI
+                ======================================================== */}
+            <div className={`absolute bottom-0 w-full md:relative md:w-1/2 z-10 flex flex-col md:border-r border-white/5 transition-all duration-500 ease-in-out order-2 md:order-1
+              ${isDescExpanded ? 'h-[75vh] bg-[#0C111A]' : 'h-[30vh] md:h-auto bg-gradient-to-t from-[#0C111A] via-[#0C111A]/95 to-transparent'}`}
+            >
+              
+              {/* Wadah Konten Teks Utama */}
+              <div className={`p-6 sm:p-8 md:p-12 w-full flex-grow flex flex-col gap-4 md:gap-6 custom-scrollbar ${isDescExpanded ? 'overflow-y-auto' : 'overflow-hidden md:overflow-y-auto'}`}>
+                <div>
+                  <span className={`inline-block px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border mb-3 ${selectedProject.badge ?? 'bg-[#2DD4BF]/10 text-[#2DD4BF] border-[#2DD4BF]/20'}`}>
+                    {selectedProject.category}
+                  </span>
+                  <h2 className="text-2xl md:text-5xl font-black text-white leading-[1.1]">{selectedProject.title}</h2>
+                </div>
+
+                <p className="text-gray-400 leading-relaxed text-sm md:text-lg">
+                  {selectedProject.fullDesc}
+                </p>
+
+                {selectedProject.features && (
+                  <div className="mt-2">
+                    <h4 className="text-white font-bold mb-3 flex items-center gap-2 text-base md:text-lg">
+                      <span className="text-[#2DD4BF]">✨</span> Highlight
+                    </h4>
+                    <ul className="space-y-3">
+                      {selectedProject.features.map((feat: string, i: number) => (
+                        <li key={i} className="flex items-start gap-3 text-gray-400 text-xs md:text-base leading-relaxed">
+                          <svg className="w-4 h-4 md:w-5 md:h-5 text-[#3B82F6] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                          {feat}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {selectedProject.tools && (
+                  <div className="mt-2 md:mt-4 pt-4 md:pt-6 border-t border-white/5">
+                    <h4 className="text-white font-bold mb-3 flex items-center gap-2">
+                      <span className="text-amber-500">🛠️</span> Tools & Aplikasi
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProject.tools.map((tool: string, i: number) => (
+                        <span key={i} className="px-3 py-1.5 text-[10px] md:text-sm font-semibold rounded-xl bg-white/5 border border-white/10 text-gray-300">
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
 
-            )}
+              {/* TOMBOL BACA SELENGKAPNYA (HANYA MUNCUL DI MOBILE) */}
+              <div className="md:hidden w-full p-4 bg-[#0C111A] border-t border-white/10 flex justify-center z-20 shadow-[0_-15px_20px_rgba(12,17,26,0.9)]">
+                <button 
+                  onClick={() => setIsDescExpanded(!isDescExpanded)} 
+                  className="text-[#2DD4BF] font-bold text-sm flex items-center gap-2 px-6 py-2 rounded-full bg-[#2DD4BF]/10 border border-[#2DD4BF]/30 transition-all active:scale-95"
+                >
+                  {isDescExpanded ? 'Tutup Deskripsi / See Less' : 'Baca Selengkapnya'}
+                  <svg className={`w-4 h-4 transition-transform duration-300 ${isDescExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 15l7-7 7 7" />
+                  </svg>
+                </button>
+              </div>
 
+            </div>
           </div>
         </div>
       )}
