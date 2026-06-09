@@ -296,6 +296,31 @@ export default function Galeri() {
                     </div>
                   </div>
                 )}
+
+                {/* 🚀 UPGRADE: TOMBOL CALL-TO-ACTION (LIVE DEMO / TONTON VIDEO) */}
+                {selectedProject.demoLink && selectedProject.demoLink !== "#" && (
+                  <div className="mt-4 md:mt-6 pt-4 border-t border-white/5">
+                    <a 
+                      href={selectedProject.demoLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="group relative flex items-center justify-center gap-3 w-full py-3.5 rounded-xl font-black text-[#0A0E17] overflow-hidden shadow-[0_0_20px_rgba(45,212,191,0.2)] hover:shadow-[0_0_30px_rgba(45,212,191,0.4)] transition-all duration-300 hover:-translate-y-1"
+                    >
+                      <span className="absolute inset-0 bg-gradient-to-r from-[#2DD4BF] to-[#3B82F6] group-hover:from-[#5EEAD4] group-hover:to-[#60A5FA] transition-all duration-300" />
+                      <span className="relative flex items-center justify-center gap-2 tracking-wide">
+                        {/* Cek kategori untuk mengubah teks tombol */}
+                        {selectedProject.category.toLowerCase().includes('video') ? (
+                          <>🎬 Tonton Video Keseluruhan</>
+                        ) : selectedProject.category.toLowerCase().includes('modul') || selectedProject.category.toLowerCase().includes('website') ? (
+                          <>🚀 Eksplorasi Live Demo</>
+                        ) : (
+                          <>🔗 Kunjungi Tautan Karya</>
+                        )}
+                        <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                      </span>
+                    </a>
+                  </div>
+                )}
               </div>
 
               {/* TOMBOL BACA SELENGKAPNYA (HANYA MUNCUL DI MOBILE) */}

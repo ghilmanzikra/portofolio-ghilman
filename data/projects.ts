@@ -230,7 +230,60 @@ export const projectsData = [
     demoLink: "#",
     fullImage: "/galeri/spanduk/SPANDUK-BERBAGI-TAKJIL.webp" // Bisa diganti nanti
   },
-
+  {
+    id: 20,
+    title: "Manusia Sosmed | ITO X Politeknik Caltex Riau 2022",
+    category: "Video",
+    shortDesc: "Juara 3 Lomba Film Pendek ITO X Politeknik Caltex Riau 2022.",
+    image: "/galeri/video/thumbnail-film-pendek.webp",
+    color: "from-rose-500/20 to-pink-500/20",
+    badge: "bg-rose-500/10 text-rose-400 border-rose-500/20",
+    span: "md:col-span-1 md:row-span-1",
+    fullDesc: "Film pendek ini dibuat oleh siswa kelas 12 Multimedia SMK Hasanah Pekanbaru untuk mengikuti perlombaan film pendek yang diselenggarakan oleh ITO X Politeknik Caltex Riau tahun 2022.",
+    features: [
+      "Berperan sebagai Pembuat Naskah & Pemeran utama",
+      "Membantu mengimprovisasi ide cerita, pengambilan gambar, dan editing video",
+    ],
+    tools: ["Capcut Pro", "After Effects"],
+    demoLink: "https://youtu.be/iDd6sw_Ma2Q?si=4MCKlpq-kHA2UjHX",
+    fullImage: "/galeri/video/thumbnail-film-pendek.webp" // Bisa diganti nanti
+  },
+  {
+    id: 21,
+    title: "Sumpah Pemuda | Content Creator Himatif 2023",
+    category: "Video",
+    shortDesc: "Video pendek untuk memperingati Hari Sumpah Pemuda 28 Oktober 2023.",
+    image: "/galeri/video/thumbnail-sumpah-pemuda.webp",
+    color: "from-rose-500/20 to-pink-500/20",
+    badge: "bg-rose-500/10 text-rose-400 border-rose-500/20",
+    span: "md:col-span-1 md:row-span-1",
+    fullDesc: "Video pendek ini dibuat oleh Tim produksi Content Creator Himatif 2023 untuk memperingati Hari Sumpah Pemuda 28 Oktober 2023.",
+    features: [
+      "Berperan sebagai Sutradara & Penulis Naskah",
+      "Mengarahkan proses produksi, pengambilan gambar, dan editing video",
+    ],
+    tools: ["Capcut Pro", "Premiere Pro"],
+    demoLink: "https://www.instagram.com/reel/Cy6IP7tpW9c/?utm_source=ig_web_copy_link",
+    fullImage: "/galeri/video/thumbnail-sumpah-pemuda.webp" // Bisa diganti nanti
+  },
+  {
+    id: 22,
+    title: "Reuni SMAN 1 Pekanbaru Angkatan 2005 Yang Ke-20",
+    category: "Video",
+    shortDesc: "Video Kampanye Smansa Angkatan 2005 Untuk Acara Reuni Akbar Ikasmansa Ke-2",
+    image: "/galeri/video/thumbnail-smansa.webp",
+    color: "from-rose-500/20 to-pink-500/20",
+    badge: "bg-rose-500/10 text-rose-400 border-rose-500/20",
+    span: "md:col-span-1 md:row-span-1",
+    fullDesc: "Video pendek ini diinisiasi oleh angkatan 2005 SMAN 1 Pekanbaru untuk memperingati perayaan reuni ke-20 mereka.",
+    features: [
+      "Berperan sebagai Direktur, Juru Kamera, Desainer Grafis, dan Editor Video",
+      "Mengarahkan proses produksi, pengambilan gambar, dan editing video",
+    ],
+    tools: ["Capcut Pro", "Canva Pro"],
+    demoLink: "https://www.instagram.com/reel/DN8ODftk_us/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    fullImage: "/galeri/video/thumbnail-smansa.webp" // Bisa diganti nanti
+  },
 
 
   // ==========================================
