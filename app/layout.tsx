@@ -9,7 +9,9 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 
 export const metadata: Metadata = {
   title: "Ghilman Zikra | Portfolio",
-  description: "Web Portofolio Pribadi Ghilman Zikra",
+  description: "Web Portofolio Resmi Ghilman Zikra",
+  keywords: ['Ghilman Zikra', 'Ghilman Zikra Portofolio', 'Teknik Informatika UIN Suska', 'Designer Multimedia', 'Portofolio Next.js'],
+  authors: [{ name: 'Ghilman Zikra' }],
   // 🚀 INI DIA JALUR TOL KE GOOGLE SEARCH KAPTEN!
   verification: {
     google: "h4_K1QLdyuKb5vb25HnzyD7PpJhT5LQIID-U72iGuDs",
